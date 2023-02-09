@@ -13,12 +13,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class WordleDictionary {
-    public static void main(String[] args) throws FileNotFoundException {
-        String word = "UM";
-        WordleDictionary dict = new WordleDictionary();
-        String result = dict.getDefinition(word);
-        System.out.println(" Result is " + result);
-    }
     public ArrayList<String> fillListFromFile(String fileName) throws FileNotFoundException {
         ArrayList<String> fileContents = new ArrayList<>();
 
