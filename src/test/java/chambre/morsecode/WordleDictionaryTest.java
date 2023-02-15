@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WordleDictionaryTest {
     @Test
-    public void getDefintion() throws FileNotFoundException {
+    public void getDefinition() throws FileNotFoundException {
         WordleDictionary dictionary = new WordleDictionary();
         assertEquals("an expression of gratitude [n -S] ", dictionary.getDefinition("TA"));
         assertEquals("to cry with a convulsive catching of the breath [v SOBBED, SOBBING, SOBS] ", dictionary.getDefinition("SOB"));
@@ -17,7 +17,8 @@ class WordleDictionaryTest {
 
     @Test
     public void getList() throws FileNotFoundException{
-        //TODO: how to test all content of the list are present
+        WordleDictionary dictionary = new WordleDictionary();
+        assertEquals(167964, dictionary.getList().size());
     }
 
 }
