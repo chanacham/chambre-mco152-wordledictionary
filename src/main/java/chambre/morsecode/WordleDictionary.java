@@ -33,7 +33,7 @@ public class WordleDictionary {
         * if(index ==-1)
         *   return null
         * return definitionSplit.get(index); */
-        ArrayList<String> fileContents = fillListFromFile("src\\main\\java\\chambre\\morsecode\\dictionary.txt");
+        ArrayList<String> fileContents = fillListFromFile("src/main/java/chambre/morsecode/dictionary.txt");
         String retVal ="";
         for (String curr : fileContents) {
             String[] holder = curr.split(" ");
@@ -52,7 +52,7 @@ public class WordleDictionary {
     }
 
     public ArrayList<String> getList() throws FileNotFoundException{
-        ArrayList<String> fileContents = fillListFromFile("src\\main\\java\\chambre\\morsecode\\dictionary.txt");
+        ArrayList<String> fileContents = fillListFromFile("src/main/java/chambre/morsecode/dictionary.txt");
         ArrayList<String> allWords = new ArrayList<>();
         for (String curr: fileContents) {
             String [] holder = curr.split(" ");
