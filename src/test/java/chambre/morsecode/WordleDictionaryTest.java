@@ -12,7 +12,8 @@ class WordleDictionaryTest {
         WordleDictionary dictionary = new WordleDictionary();
         assertEquals("an expression of gratitude [n -S]", dictionary.getDefinition("TA"));
         assertEquals("to cry with a convulsive catching of the breath [v SOBBED, SOBBING, SOBS]", dictionary.getDefinition("SOB"));
-        assertNull(dictionary.getDefinition("WELTANSCHAUUNGS"));
+        assertEquals("",dictionary.getDefinition("WELTANSCHAUUNGS"));
+        assertNull(dictionary.getDefinition("jfihgiorhffdvb"));
         assertEquals("<format=v> [v]", dictionary.getDefinition("formatting"));
     }
 
