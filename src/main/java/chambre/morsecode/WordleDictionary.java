@@ -28,7 +28,12 @@ public class WordleDictionary {
     }
 
     public String getDefinition(String word) throws FileNotFoundException {
-        ArrayList<String> fileContents = fillListFromFile("C:\\Users\\cbcha\\Downloads\\dictionary.txt\\");
+        /*
+        * int index = wordSplit.indexOf(word.toUpperCase());
+        * if(index ==-1)
+        *   return null
+        * return definitionSplit.get(index); */
+        ArrayList<String> fileContents = fillListFromFile("src\\main\\java\\chambre\\morsecode\\dictionary.txt");
         String retVal ="";
         for (String curr : fileContents) {
             String[] holder = curr.split(" ");
@@ -38,13 +43,16 @@ public class WordleDictionary {
                 }
             }
         }
-        retVal.trim();
 
-        return retVal;
+
+        if (retVal.length()==0){
+            return null;
+        }
+        return retVal.substring(0,retVal.length()-1);
     }
 
     public ArrayList<String> getList() throws FileNotFoundException{
-        ArrayList<String> fileContents = fillListFromFile("C:\\Users\\cbcha\\Downloads\\dictionary.txt\\");
+        ArrayList<String> fileContents = fillListFromFile("src\\main\\java\\chambre\\morsecode\\dictionary.txt");
         ArrayList<String> allWords = new ArrayList<>();
         for (String curr: fileContents) {
             String [] holder = curr.split(" ");
