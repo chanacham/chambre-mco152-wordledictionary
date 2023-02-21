@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class WordleGame {
-    private String wordleWord;
+    private final String wordleWord;
 
-    public WordleGame() throws FileNotFoundException{
+    public WordleGame() throws FileNotFoundException {
         WordleDictionary dictionary = new WordleDictionary();
 
         ArrayList<String> fives = new ArrayList<>();
@@ -21,16 +21,21 @@ public class WordleGame {
         wordleWord = fives.get(random.nextInt(fives.size()));
     }
 
-    public CharResult[] guess(String guessString){
+    public String getWordleWord() {
+        return wordleWord;
+    }
+
+    public CharResult[] guess(String guessString) {
         CharResult[] status = new CharResult[5];
         for (int i = 0; i < wordleWord.length(); i++) {
-            if (wordleWord.contains(guessString.substring(i, i + 1))) {
-                String guess = guessString.substring(i,i+1);
-                String wordle = wordleWord.substring(i,i+1);
-                if (guess.equalsIgnoreCase(wordle)){
+            String guess = String.valueOf(guessString.charAt(i));
+            if (wordleWord.contains(guess)) {
+                String wordleLetter = wordleWord.substring(i, i + 1);
+                if (guess.equalsIgnoreCase(wordleLetter)) {
                     status[i] = CharResult.Correct;
+                } else {
+                    status[i] = CharResult.WrongPlace;
                 }
-                status[i] = CharResult.WrongPlace;
             } else {
                 status[i] = CharResult.NotFound;
             }
