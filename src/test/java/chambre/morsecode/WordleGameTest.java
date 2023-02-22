@@ -14,6 +14,11 @@ class WordleGameTest {
 
         CharResult[] result = game.guess(game.getWordleWord());
         CharResult[] answer = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
-        assertEquals(Arrays.toString(answer), Arrays.toString(result));
+        assertArrayEquals(answer, result);
+
+        CharResult [] nonExistentWord = game.guess("frindle");
+        CharResult[] wrong = {CharResult.NotFound, CharResult.NotFound, CharResult.NotFound, CharResult.NotFound, CharResult.NotFound};
+        assertArrayEquals(nonExistentWord, wrong);
+
     }
 }
