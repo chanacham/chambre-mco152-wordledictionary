@@ -2,14 +2,12 @@ package chambre.morsecode;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class WordleGame {
     private final String wordleWord;
 
-    public WordleGame() throws FileNotFoundException {
-        WordleDictionary dictionary = new WordleDictionary();
+    public WordleGame(WordleDictionary dictionary) throws FileNotFoundException {
 
         ArrayList<String> fives = new ArrayList<>();
         for (String word : dictionary.getList()) {
