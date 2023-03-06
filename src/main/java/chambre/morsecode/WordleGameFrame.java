@@ -60,6 +60,7 @@ public class WordleGameFrame extends JFrame {
 
         for (int i = 0; i < rowOne.length; i++) {
             JButton button = new JButton();
+            button.addActionListener(e -> onScreenClick(button));
             button.setText(rowOne[i]);
             button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
@@ -67,6 +68,7 @@ public class WordleGameFrame extends JFrame {
         }
         for (int i = 0; i < rowTwo.length; i++) {
             JButton button = new JButton();
+            button.addActionListener(e -> onScreenClick(button));
             button.setText(rowTwo[i]);
             button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
@@ -76,6 +78,7 @@ public class WordleGameFrame extends JFrame {
         kRow3.add(backspace);
         for (int i = 0; i < rowThree.length; i++) {
             JButton button = new JButton();
+            button.addActionListener(e -> onScreenClick(button));
             button.setText(rowThree[i]);
             button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
@@ -113,17 +116,13 @@ public class WordleGameFrame extends JFrame {
             }
         });
 
-//        button.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
-
         setContentPane(mainPanel);
         setSize(600, 1000);
         setTitle("Wordle Game ");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    private void onScreenClick(JButton button) {
     }
 }
