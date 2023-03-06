@@ -2,8 +2,6 @@ package chambre.morsecode;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -53,28 +51,42 @@ public class WordleGameFrame extends JFrame {
         String[] rowThree = {"Z", "X", "C", "V", "B", "N", "M"};
 
         JPanel keyboardPanel = new JPanel(new GridLayout(3, 1));
+        JPanel kRow1 = new JPanel(new GridLayout(1, 10));
+        JPanel kRow2 = new JPanel(new GridLayout(1, 9));
+        JPanel kRow3 = new JPanel(new GridLayout(1, 10));
+
         mainPanel.add(keyboardPanel, BorderLayout.SOUTH);
         keyboardPanel.setPreferredSize(new Dimension(300, 300));
 
-        JButton button = null;
         for (int i = 0; i < rowOne.length; i++) {
-            button = new JButton();
+            JButton button = new JButton();
             button.setText(rowOne[i]);
+            button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
-            keyboardPanel.add(keyboard[i]);
+            kRow1.add(keyboard[i]);
         }
         for (int i = 0; i < rowTwo.length; i++) {
-            button = new JButton();
+            JButton button = new JButton();
             button.setText(rowTwo[i]);
+            button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
-            keyboardPanel.add(keyboard[i]);
+            kRow2.add(keyboard[i]);
         }
+        JButton backspace = new JButton("Back");
+        kRow3.add(backspace);
         for (int i = 0; i < rowThree.length; i++) {
-            button = new JButton();
+            JButton button = new JButton();
             button.setText(rowThree[i]);
+            button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
-            keyboardPanel.add(keyboard[i]);
+            kRow3.add(keyboard[i]);
         }
+
+        JButton enter = new JButton("Enter");
+        kRow3.add(enter);
+        keyboardPanel.add(kRow1);
+        keyboardPanel.add(kRow2);
+        keyboardPanel.add(kRow3);
 
         // action listener and keyboard listener
         addKeyListener(new KeyListener() {
@@ -101,12 +113,12 @@ public class WordleGameFrame extends JFrame {
             }
         });
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+//        button.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//            }
+//        });
 
         setContentPane(mainPanel);
         setSize(600, 1000);
