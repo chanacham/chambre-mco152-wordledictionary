@@ -75,7 +75,9 @@ public class WordleGameFrame extends JFrame {
             kRow2.add(keyboard[i]);
         }
         JButton backspace = new JButton("Back");
+        backspace.addActionListener(e -> onScreenClick(backspace));
         kRow3.add(backspace);
+
         for (int i = 0; i < rowThree.length; i++) {
             JButton button = new JButton();
             button.addActionListener(e -> onScreenClick(button));
@@ -86,6 +88,7 @@ public class WordleGameFrame extends JFrame {
         }
 
         JButton enter = new JButton("Enter");
+        backspace.addActionListener(e -> onScreenClick(enter));
         kRow3.add(enter);
         keyboardPanel.add(kRow1);
         keyboardPanel.add(kRow2);
@@ -124,5 +127,6 @@ public class WordleGameFrame extends JFrame {
     }
 
     private void onScreenClick(JButton button) {
+
     }
 }
