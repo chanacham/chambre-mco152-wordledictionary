@@ -12,14 +12,11 @@ public class WordleGameFrame extends JFrame {
     private JButton enter;
     private JButton backspace;
 
-    private CharResult[] guessResult;
-    private String theGuess;
-
     private WordleController controller;
 
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary dictionary) {
         setTitle("Wordle Game");
-        setSize(300, 400);
+        setSize(500, 700);
         controller = new WordleController(
                 wordleGame,
                 dictionary,
@@ -127,6 +124,7 @@ public class WordleGameFrame extends JFrame {
     }
 
     private void onScreenClick(JButton button) {
-
+        // when a button is clicked, it calls addLetter from the Controller and adds it to the guess
+        controller.addLetter(button.getText());
     }
 }

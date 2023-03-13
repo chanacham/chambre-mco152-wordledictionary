@@ -3,6 +3,9 @@ package chambre.morsecode;
 import javax.swing.*;
 
 public class WordleController {
+    private final int MAX_SIZE = 5;
+    // int to show which row it is on
+
     private final WordleGame wordleGame;
     private final WordleDictionary dictionary;
 
@@ -12,7 +15,10 @@ public class WordleController {
     private final JButton enter;
     private final JButton backspace;
 
-    private String currGuess;
+    private CharResult[] guessResult;
+    private String theGuess;
+    private int columnCounter = 0;
+    private int rowCounter = 0;
 
     public WordleController(WordleGame wordleGame, WordleDictionary dictionary, JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace) {
         this.wordleGame = wordleGame;
@@ -24,12 +30,11 @@ public class WordleController {
     }
 
     public void addLetter(String letter) {
-        //when either a letter on the screen or a letter on the keyboard is clicked
-
-        //first validate if the letter can be entered (that the current guess has less than 5 letters)
-        // if the guess is valid,
-        // add this letter to the current guess
-        // display this letter on the board
+        if (letter.length() == 1) {
+            theGuess += letter;
+            labels[rowCounter][columnCounter].setText(letter);
+            columnCounter++;
+        }
     }
 
     public void enterGuess() {
