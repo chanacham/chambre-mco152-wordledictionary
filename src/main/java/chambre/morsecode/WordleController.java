@@ -1,11 +1,10 @@
 package chambre.morsecode;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class WordleController {
     private final int MAX_SIZE = 5;
-    // int to show which row it is on
-
     private final WordleGame wordleGame;
     private final WordleDictionary dictionary;
 
@@ -14,9 +13,8 @@ public class WordleController {
 
     private final JButton enter;
     private final JButton backspace;
-
+    private final StringBuilder theGuess = new StringBuilder();
     private CharResult[] guessResult;
-    private String theGuess;
     private int columnCounter = 0;
     private int rowCounter = 0;
 
@@ -30,27 +28,38 @@ public class WordleController {
     }
 
     public void addLetter(String letter) {
-        if (letter.length() == 1) {
-            theGuess += letter;
+        theGuess.append(letter);
+
+        if (letter.length() == 1 && columnCounter < MAX_SIZE) {
             labels[rowCounter][columnCounter].setText(letter);
             columnCounter++;
+        } else if (columnCounter > MAX_SIZE) {
+            rowCounter++;
+            columnCounter = 0;
         }
     }
 
     public void enterGuess() {
-        // takes the current letters entered by the user
-        // validates them against the WordleGame guess method
-        // depending on CharResult []
-        // if CharResult == CORRECT
-        // GREEN
-        // if CharResult == WRONG PLACE
-        //  GOLD
-        // if CharResult == NOT FOUND
-        // GREY
+        CharResult[] answer = wordleGame.guess(String.valueOf(theGuess));
+        for (int i = 0; i < theGuess.length(); i++) {
+            CharResult curr = answer[i];
+            if (curr == CharResult.Correct) {
+                labels[rowCounter][i].setOpaque(true);
+                labels[rowCounter][i].setBackground(new Color(0, 204, 0));
+            } else if (curr == CharResult.WrongPlace) {
+                labels[rowCounter][i].setOpaque(true);
+                labels[rowCounter][i].setBackground(new Color(213, 228, 13));
+            } else if (curr == CharResult.NotFound) {
+                labels[rowCounter][i].setOpaque(true);
+                labels[rowCounter][i].setBackground(new Color(155, 155, 155));
+            }
+        }
+
     }
 
     public void backspace() {
         // remove the letter from currGuess
         // remove the letter from the GUI
+
     }
 }

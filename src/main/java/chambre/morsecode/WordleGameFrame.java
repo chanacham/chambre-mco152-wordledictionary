@@ -29,7 +29,7 @@ public class WordleGameFrame extends JFrame {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
-        JPanel centerPanel = new JPanel(new GridLayout(6, 5));
+        JPanel centerPanel = new JPanel(new GridLayout(6, 5, 10, 10));
         centerPanel.setPreferredSize(new Dimension(300, 400));
         mainPanel.add(centerPanel, BorderLayout.CENTER);
         for (int i = 0; i < 6; i++) {
@@ -57,7 +57,8 @@ public class WordleGameFrame extends JFrame {
 
         for (int i = 0; i < rowOne.length; i++) {
             JButton button = new JButton();
-            button.addActionListener(e -> onScreenClick(button));
+            button.addActionListener(e -> controller.addLetter(button.getText()));
+
             button.setText(rowOne[i]);
             button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
@@ -65,19 +66,19 @@ public class WordleGameFrame extends JFrame {
         }
         for (int i = 0; i < rowTwo.length; i++) {
             JButton button = new JButton();
-            button.addActionListener(e -> onScreenClick(button));
+            button.addActionListener(e -> controller.addLetter(button.getText()));
             button.setText(rowTwo[i]);
             button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
             kRow2.add(keyboard[i]);
         }
         JButton backspace = new JButton("Back");
-        backspace.addActionListener(e -> onScreenClick(backspace));
+        backspace.addActionListener(e -> controller.backspace());
         kRow3.add(backspace);
 
         for (int i = 0; i < rowThree.length; i++) {
             JButton button = new JButton();
-            button.addActionListener(e -> onScreenClick(button));
+            button.addActionListener(e -> controller.addLetter(button.getText()));
             button.setText(rowThree[i]);
             button.setHorizontalAlignment(JButton.CENTER);
             keyboard[i] = button;
@@ -85,19 +86,21 @@ public class WordleGameFrame extends JFrame {
         }
 
         JButton enter = new JButton("Enter");
-        backspace.addActionListener(e -> onScreenClick(enter));
+        enter.addActionListener(e -> controller.enterGuess());
         kRow3.add(enter);
+
         keyboardPanel.add(kRow1);
         keyboardPanel.add(kRow2);
         keyboardPanel.add(kRow3);
 
-        // action listener and keyboard listener
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+//                setFocusable(true);
+//                requestFocus();
                 char character = e.getKeyChar();
                 if (Character.isAlphabetic(character)) {
-                    controller.addLetter(String.valueOf(e.getKeyChar()));
+                    controller.addLetter(String.valueOf(character));
                 } else if (character == KeyEvent.VK_BACK_SPACE) {
                     //...
                 } else if (character == KeyEvent.VK_ENTER) {
@@ -123,8 +126,4 @@ public class WordleGameFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    private void onScreenClick(JButton button) {
-        // when a button is clicked, it calls addLetter from the Controller and adds it to the guess
-        controller.addLetter(button.getText());
-    }
 }
