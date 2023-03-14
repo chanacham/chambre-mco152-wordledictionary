@@ -37,7 +37,7 @@ public class WordleController {
     }
 
     public void enterGuess() {
-        CharResult[] guessResult = wordleGame.guess(String.valueOf(theGuess));
+        CharResult[] guessResult = wordleGame.guess(theGuess.toString());
         if (guessResult.length == MAX_SIZE) {
             for (int i = 0; i < theGuess.length(); i++) {
                 CharResult curr = guessResult[i];
