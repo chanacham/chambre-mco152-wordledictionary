@@ -59,7 +59,6 @@ public class WordleGameFrame extends JFrame {
                 mainPanel.requestFocus();
                 controller.addLetter(button.getText());
             });
-            ;
 
             button.setText(rowOne[i]);
             button.setHorizontalAlignment(JButton.CENTER);

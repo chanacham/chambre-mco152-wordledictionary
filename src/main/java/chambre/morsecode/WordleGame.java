@@ -45,7 +45,7 @@ public class WordleGame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Word not found, please try again. ");
+            JOptionPane.showMessageDialog(null, "Word not found, this guess is invalid. Please continue with a new word.");
         }
 
         return status;
