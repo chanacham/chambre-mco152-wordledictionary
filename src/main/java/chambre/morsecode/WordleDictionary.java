@@ -3,11 +3,13 @@ package chambre.morsecode;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class WordleDictionary {
     private final ArrayList<String> wordList = new ArrayList<>();
-    private final ArrayList<String> definitionList = new ArrayList<>();
+
+    private final HashMap<String, String> map = new HashMap<>();
 
     public WordleDictionary() throws FileNotFoundException {
         String fileName = "src/main/java/chambre/morsecode/dictionary.txt";
@@ -18,9 +20,9 @@ public class WordleDictionary {
             String[] holder = data.split(" ", 2);
             wordList.add(holder[0]);
             if (holder.length == 2) {
-                definitionList.add(holder[1]);
+                map.put(holder[0], holder[1]);
             } else {
-                definitionList.add("");
+                map.put(holder[0], "");
             }
         }
         input.close();
@@ -28,11 +30,7 @@ public class WordleDictionary {
 
 
     public String getDefinition(String word) {
-        int index = wordList.indexOf(word.toUpperCase());
-        if (index == -1) {
-            return null;
-        }
-        return definitionList.get(index);
+        return map.get(word.toUpperCase());
     }
 
     public ArrayList<String> getList() {
