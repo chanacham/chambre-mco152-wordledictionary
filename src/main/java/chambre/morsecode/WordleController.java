@@ -4,26 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WordleController {
+    final StringBuilder theGuess = new StringBuilder();
     private final int MAX_SIZE = 5;
     private final int NUM_GUESSES = 6;
     private final WordleGame wordleGame;
     private final WordleDictionary dictionary;
-
     private final JLabel[][] labels;
-    private final JButton[] keyboard;
-
     private final JButton enter;
     private final JButton backspace;
-    private final StringBuilder theGuess = new StringBuilder();
-
     private int columnCounter = 0;
     private int rowCounter = 0;
 
-    public WordleController(WordleGame wordleGame, WordleDictionary dictionary, JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace) {
+    public WordleController(WordleGame wordleGame, WordleDictionary dictionary, JLabel[][] labels, JButton enter, JButton backspace) {
         this.wordleGame = wordleGame;
         this.dictionary = dictionary;
         this.labels = labels;
-        this.keyboard = keyboard;
         this.enter = enter;
         this.backspace = backspace;
     }

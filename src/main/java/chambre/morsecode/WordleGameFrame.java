@@ -19,7 +19,6 @@ public class WordleGameFrame extends JFrame {
                 wordleGame,
                 dictionary,
                 mainBoard,
-                keyboard,
                 enter,
                 backspace
         );
