@@ -32,24 +32,30 @@ public class WordleController {
     }
 
     public void enterGuess() {
-        CharResult[] guessResult = wordleGame.guess(theGuess.toString());
-        if (guessResult.length == MAX_SIZE) {
-            for (int i = 0; i < theGuess.length(); i++) {
-                CharResult curr = guessResult[i];
-                if (curr == CharResult.Correct) {
-                    labels[rowCounter][i].setOpaque(true);
-                    labels[rowCounter][i].setBackground(new Color(0, 204, 0));
-                } else if (curr == CharResult.WrongPlace) {
-                    labels[rowCounter][i].setOpaque(true);
-                    labels[rowCounter][i].setBackground(new Color(213, 228, 13));
-                } else if (curr == CharResult.NotFound) {
-                    labels[rowCounter][i].setOpaque(true);
-                    labels[rowCounter][i].setBackground(new Color(155, 155, 155));
+        if (theGuess.length() == 5 && !theGuess.toString().equals("")) {
+            String currentWord = theGuess.toString().toUpperCase();
+            if (wordleGame.getFives().contains(currentWord)) {
+                CharResult[] guessResult = wordleGame.guess(theGuess.toString());
+                for (int i = 0; i < theGuess.length(); i++) {
+                    CharResult curr = guessResult[i];
+                    if (curr == CharResult.Correct) {
+                        labels[rowCounter][i].setOpaque(true);
+                        labels[rowCounter][i].setBackground(new Color(0, 204, 0));
+                    } else if (curr == CharResult.WrongPlace) {
+                        labels[rowCounter][i].setOpaque(true);
+                        labels[rowCounter][i].setBackground(new Color(213, 228, 13));
+                    } else if (curr == CharResult.NotFound) {
+                        labels[rowCounter][i].setOpaque(true);
+                        labels[rowCounter][i].setBackground(new Color(155, 155, 155));
+                    }
                 }
+                theGuess.delete(0, MAX_SIZE);
+                columnCounter = 0;
+                rowCounter++;
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(),
+                        "Word not in dictionary, please try a different word");
             }
-            theGuess.delete(0, MAX_SIZE);
-            columnCounter = 0;
-            rowCounter++;
         }
         if (rowCounter == NUM_GUESSES) {
             System.out.println(wordleGame.getWordleWord());

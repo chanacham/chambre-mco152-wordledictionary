@@ -1,6 +1,5 @@
 package chambre.morsecode;
 
-import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,10 +7,10 @@ import java.util.Random;
 public class WordleGame {
     private final String wordleWord;
     private WordleDictionary dictionary = new WordleDictionary();
+    private ArrayList<String> fives = new ArrayList<>();
 
     public WordleGame() throws FileNotFoundException {
 
-        ArrayList<String> fives = new ArrayList<>();
         for (String word : dictionary.getList()) {
             if (word.length() == 5) {
                 fives.add(word);
@@ -19,6 +18,10 @@ public class WordleGame {
         }
         Random random = new Random();
         wordleWord = fives.get(random.nextInt(fives.size()));
+    }
+
+    public ArrayList<String> getFives() {
+        return fives;
     }
 
     public String getWordleWord() {
@@ -30,23 +33,23 @@ public class WordleGame {
 
         ArrayList<String> list = dictionary.getList();
 
-        if (list.contains(guessString)) {
-            for (int i = 0; i < wordleWord.length(); i++) {
-                String guess = String.valueOf(guessString.charAt(i));
-                if (wordleWord.contains(guess)) {
-                    String wordleLetter = wordleWord.substring(i, i + 1);
-                    if (guess.equalsIgnoreCase(wordleLetter)) {
-                        status[i] = CharResult.Correct;
-                    } else {
-                        status[i] = CharResult.WrongPlace;
-                    }
+        //if (list.contains(guessString)) {
+        for (int i = 0; i < wordleWord.length(); i++) {
+            String guess = String.valueOf(guessString.charAt(i));
+            if (wordleWord.contains(guess)) {
+                String wordleLetter = wordleWord.substring(i, i + 1);
+                if (guess.equalsIgnoreCase(wordleLetter)) {
+                    status[i] = CharResult.Correct;
                 } else {
-                    status[i] = CharResult.NotFound;
+                    status[i] = CharResult.WrongPlace;
                 }
+            } else {
+                status[i] = CharResult.NotFound;
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Word not found, this guess is invalid. Please continue with a new word.");
         }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Word not found, this guess is invalid. Please continue with a new word.");
+//        }
 
         return status;
     }
