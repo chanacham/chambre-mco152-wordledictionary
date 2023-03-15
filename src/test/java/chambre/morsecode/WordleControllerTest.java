@@ -1,8 +1,10 @@
 package chambre.morsecode;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import javax.swing.*;
+import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -71,9 +73,11 @@ class WordleControllerTest {
 
         //then
         //asserts that all colors have changed to the correct color
-        verify(labels[0][0].getBackground());
-
-        //asserts that the counters are properly incremented to reflect the status of the game
+        Mockito.verify(labels[0][0]).setBackground(new Color(0, 204, 0));
+        Mockito.verify(labels[0][1]).setBackground(new Color(0, 204, 0));
+        Mockito.verify(labels[0][2]).setBackground(new Color(0, 204, 0));
+        Mockito.verify(labels[0][3]).setBackground(new Color(0, 204, 0));
+        Mockito.verify(labels[0][4]).setBackground(new Color(0, 204, 0));
     }
 
     @Test
