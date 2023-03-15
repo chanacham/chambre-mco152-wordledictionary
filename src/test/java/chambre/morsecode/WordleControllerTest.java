@@ -11,27 +11,28 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class WordleControllerTest {
+    private WordleGame game = mock();
+    private WordleDictionary dictionary = mock();
+    private JLabel[][] labels = new JLabel[][]{{
+            mock(), mock(), mock(), mock(), mock(),
+    }, {
+            mock(), mock(), mock(), mock(), mock(),
+    }, {
+            mock(), mock(), mock(), mock(), mock(),
+    }, {
+            mock(), mock(), mock(), mock(), mock(),
+    }, {
+            mock(), mock(), mock(), mock(), mock(),
+    }, {
+            mock(), mock(), mock(), mock(), mock(),
+    },
+    };
+    private JButton enter = mock();
+    private JButton back = mock();
+
     @Test
     public void addLetter() {
         //given
-        WordleGame game = mock();
-        WordleDictionary dictionary = mock();
-        JLabel[][] labels = new JLabel[][]{{
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        },
-        };
-        JButton enter = mock();
-        JButton back = mock();
         WordleController controller = new WordleController(game, dictionary, labels, enter, back);
 
         //when
@@ -45,30 +46,15 @@ class WordleControllerTest {
     @Test
     public void enterGuess() {
         //given
-        WordleGame game = mock();
-        WordleDictionary dictionary = mock();
-        JLabel[][] labels = new JLabel[][]{{
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        },
-        };
-        JButton enter = mock();
-        JButton back = mock();
         WordleController controller = new WordleController(game, dictionary, labels, enter, back);
+        controller.addLetter("A");
+        controller.addLetter("P");
+        controller.addLetter("P");
+        controller.addLetter("L");
+        controller.addLetter("E");
+
 
         //when
-        for (int i = 0; i < game.getWordleWord().length() - 1; i++) {
-            controller.addLetter(game.getWordleWord().substring(i, i + 1));
-        }
         controller.enterGuess();
 
         //then
@@ -83,24 +69,6 @@ class WordleControllerTest {
     @Test
     public void backspace() {
         //given
-        WordleGame game = mock();
-        WordleDictionary dictionary = mock();
-        JLabel[][] labels = new JLabel[][]{{
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        }, {
-                mock(), mock(), mock(), mock(), mock(),
-        },
-        };
-        JButton enter = mock();
-        JButton back = mock();
         WordleController controller = new WordleController(game, dictionary, labels, enter, back);
 
         //when
