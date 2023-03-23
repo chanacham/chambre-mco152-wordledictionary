@@ -52,6 +52,7 @@ public class WordleGameFrame extends JFrame {
         JPanel kRow2 = new JPanel(new GridLayout(1, 9));
         JPanel kRow3 = new JPanel(new GridLayout(1, 10));
 
+
         for (int i = 0; i < rowOne.length; i++) {
             JButton button = new JButton();
             button.addActionListener(e -> {
