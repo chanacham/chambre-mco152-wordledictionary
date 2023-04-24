@@ -32,7 +32,7 @@ public class WordleController {
     }
 
     public void enterGuess() {
-        if (theGuess.length() == 5 && !theGuess.toString().equals("")) {
+        if (theGuess.length() == 5) {
             String currentWord = theGuess.toString().toUpperCase();
             if (wordleGame.getFives().contains(currentWord)) {
                 CharResult[] guessResult = wordleGame.guess(theGuess.toString());
