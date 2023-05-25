@@ -19,7 +19,7 @@ class WordleGameTest {
         WordleDictionary dictionary = Mockito.mock(WordleDictionary.class);
         ArrayList<String> words = new ArrayList<String>(Collections.singleton("APPLE"));
         doReturn(words).when(dictionary).getList();
-        WordleGame game = new WordleGame(dictionary);
+        WordleGame game = new WordleGame();
 
         //when
         CharResult[] result = game.guess("APPLE");

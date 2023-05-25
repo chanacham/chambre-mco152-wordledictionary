@@ -6,10 +6,11 @@ import java.util.Random;
 
 public class WordleGame {
     private final String wordleWord;
+    private WordleDictionary dictionary = new WordleDictionary();
+    private ArrayList<String> fives = new ArrayList<>();
 
-    public WordleGame(WordleDictionary dictionary) throws FileNotFoundException {
+    public WordleGame() throws FileNotFoundException {
 
-        ArrayList<String> fives = new ArrayList<>();
         for (String word : dictionary.getList()) {
             if (word.length() == 5) {
                 fives.add(word);
@@ -19,12 +20,20 @@ public class WordleGame {
         wordleWord = fives.get(random.nextInt(fives.size()));
     }
 
+    public ArrayList<String> getFives() {
+        return fives;
+    }
+
     public String getWordleWord() {
         return wordleWord;
     }
 
     public CharResult[] guess(String guessString) {
         CharResult[] status = new CharResult[5];
+
+        ArrayList<String> list = dictionary.getList();
+
+        //if (list.contains(guessString)) {
         for (int i = 0; i < wordleWord.length(); i++) {
             String guess = String.valueOf(guessString.charAt(i));
             if (wordleWord.contains(guess)) {
@@ -38,6 +47,10 @@ public class WordleGame {
                 status[i] = CharResult.NotFound;
             }
         }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Word not found, this guess is invalid. Please continue with a new word.");
+//        }
+
         return status;
     }
 }
