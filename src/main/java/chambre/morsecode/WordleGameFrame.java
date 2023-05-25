@@ -133,7 +133,6 @@ public class WordleGameFrame extends JFrame {
             public void keyReleased(KeyEvent e) {
 
             }
-        });
 
         mainPanel.add(keyboardPanel, BorderLayout.SOUTH);
 
